@@ -69,9 +69,9 @@ export default function GalleryItem({ image, index, onClick }: GalleryItemProps)
         />
         
         {/* Gradiente sutil abajo para el texto */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 rounded-3xl pointer-events-none" />
         
-        <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none flex items-center justify-between">
+        <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-0 md:translate-y-4 opacity-100 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-700 pointer-events-none flex items-center justify-between">
           <p className="text-white font-medium text-sm tracking-wide drop-shadow-md">
             {image.title}
           </p>

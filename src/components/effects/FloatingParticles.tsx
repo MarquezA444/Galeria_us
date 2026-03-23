@@ -35,9 +35,15 @@ if (typeof window !== 'undefined') {
     globalMouse.x = e.clientX;
     globalMouse.y = e.clientY;
   }, { passive: true });
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches[0]) {
+      globalMouse.x = e.touches[0].clientX;
+      globalMouse.y = e.touches[0].clientY;
+    }
+  }, { passive: true });
 }
 
-const InteractiveParticle = ({ p, isMobile, triggerId, isNight }: { p: Particle, isMobile: boolean, triggerId: number | null, isNight: boolean }) => {
+const InteractiveParticle = ({ p, triggerId, isNight }: { p: Particle, triggerId: number | null, isNight: boolean }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [magnet, setMagnet] = useState({ x: 0, y: 0 });
@@ -54,7 +60,7 @@ const InteractiveParticle = ({ p, isMobile, triggerId, isNight }: { p: Particle,
 
   // Hook nativo de Framer a 60fps, no causa React Re-renders
   useAnimationFrame(() => {
-    if (!ref.current || isMobile || p.type !== 'flower') return;
+    if (!ref.current || p.type !== 'flower') return;
     
     // getBoundingClientRect no causa Layout Thrashing porque todo usa transform: translate
     const rect = ref.current.getBoundingClientRect();
@@ -248,14 +254,14 @@ export default function FloatingParticles() {
         className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
         style={{ x: bgX, y: bgY }}
       >
-        {bgParticles.map(p => <InteractiveParticle key={p.id} p={p} isMobile={isMobile} triggerId={tappedParticleId} isNight={isNight} />)}
+        {bgParticles.map(p => <InteractiveParticle key={p.id} p={p} triggerId={tappedParticleId} isNight={isNight} />)}
       </motion.div>
       
       <motion.div 
         className="fixed inset-0 pointer-events-none z-40 overflow-hidden"
         style={{ x: fgX, y: fgY }}
       >
-        {fgParticles.map(p => <InteractiveParticle key={p.id} p={p} isMobile={isMobile} triggerId={tappedParticleId} isNight={isNight} />)}
+        {fgParticles.map(p => <InteractiveParticle key={p.id} p={p} triggerId={tappedParticleId} isNight={isNight} />)}
       </motion.div>
     </>
   );
