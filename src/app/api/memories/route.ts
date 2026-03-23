@@ -1,15 +1,19 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import webPush from 'web-push';
+import webPush, { type PushSubscription } from 'web-push';
 
 // Configurar Web Push con claves VAPID
 if (process.env.VAPID_PRIVATE_KEY && process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY) {
-  webPush.setVapidDetails(
-    process.env.VAPID_EMAIL || 'mailto:example@example.com',
-    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
-    process.env.VAPID_PRIVATE_KEY
-  );
+  try {
+    webPush.setVapidDetails(
+      process.env.VAPID_EMAIL || 'mailto:example@example.com',
+      process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+      process.env.VAPID_PRIVATE_KEY
+    );
+  } catch (err) {
+    console.error('VAPID initialization failed:', err);
+  }
 }
 
 const getFilePath = () => path.join(process.cwd(), 'src', 'data', 'memories.json');
@@ -59,7 +63,7 @@ export async function POST(req: Request) {
       });
 
       // Enviar a todos los suscriptores
-      const pushPromises = subscriptions.map((sub: webPush.PushSubscription) => 
+      const pushPromises = subscriptions.map((sub: PushSubscription) => 
         webPush.sendNotification(sub, payload).catch(err => {
           console.error('Error sending push to subscription:', err.endpoint);
           // Si falla (ej: expiró), podríamos limpiarlo de la lista aquí
