@@ -35,6 +35,21 @@ export default function RootLayout({
         <main className="relative z-10 w-full min-h-screen flex flex-col items-center">
           {children}
         </main>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                    console.log('Service Worker registrado');
+                  }).catch(function(err) {
+                    console.error('Fallo al registrar SW:', err);
+                  });
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );
