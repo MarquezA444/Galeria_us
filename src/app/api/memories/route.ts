@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import webPush, { type PushSubscription } from 'web-push';
 
+export const dynamic = 'force-dynamic';
+
 // Configurar Web Push con claves VAPID
 if (process.env.VAPID_PRIVATE_KEY && process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY) {
   try {
