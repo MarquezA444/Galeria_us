@@ -5,18 +5,20 @@ import webPush, { type PushSubscription } from 'web-push';
 
 export const dynamic = 'force-dynamic';
 
-// Configurar Web Push con claves VAPID
-if (process.env.VAPID_PRIVATE_KEY && process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY) {
-  try {
-    webPush.setVapidDetails(
-      process.env.VAPID_EMAIL || 'mailto:example@example.com',
-      process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
-      process.env.VAPID_PRIVATE_KEY
-    );
-  } catch (err) {
-    console.error('VAPID initialization failed:', err);
+const ensureVapidConfig = () => {
+  if (process.env.VAPID_PRIVATE_KEY && process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY) {
+    try {
+      webPush.setVapidDetails(
+        process.env.VAPID_EMAIL || 'mailto:example@example.com',
+        process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+        process.env.VAPID_PRIVATE_KEY
+      );
+    } catch (err) {
+      console.error('VAPID initialization failed:', err);
+    }
   }
-}
+};
+
 
 const getFilePath = () => path.join(process.cwd(), 'src', 'data', 'memories.json');
 const getSubscriptionsPath = () => path.join(process.cwd(), 'src', 'data', 'subscriptions.json');
@@ -69,6 +71,7 @@ export async function POST(req: Request) {
     }
 
     // --- Lógica de Notificación Push ---
+    ensureVapidConfig();
     const subsPath = getSubscriptionsPath();
     if (fs.existsSync(subsPath)) {
       try {
