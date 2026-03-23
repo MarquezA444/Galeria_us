@@ -9,15 +9,23 @@ export async function POST(req: Request) {
     const subscription = await req.json();
     const filePath = getFilePath();
     
-    let subscriptions = [];
+    let subscriptions: any[] = [];
     if (fs.existsSync(filePath)) {
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-      subscriptions = JSON.parse(fileContents);
+      try {
+        const fileContents = fs.readFileSync(filePath, 'utf8');
+        subscriptions = JSON.parse(fileContents);
+      } catch (e) {
+        console.error('Error reading subscriptions file:', e);
+      }
     } else {
-      // Crear directorio si no existe
-      const dir = path.dirname(filePath);
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
+      // Intentar crear directorio solo si es necesario (puede fallar en Vercel)
+      try {
+        const dir = path.dirname(filePath);
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
+      } catch (e) {
+        console.warn('Dir creation skipped (normal on Vercel)');
       }
     }
 
@@ -25,12 +33,16 @@ export async function POST(req: Request) {
     const existingIndex = subscriptions.findIndex((s: { endpoint: string }) => s.endpoint === subscription.endpoint);
     if (existingIndex === -1) {
       subscriptions.push(subscription);
-      fs.writeFileSync(filePath, JSON.stringify(subscriptions, null, 2), 'utf8');
+      try {
+        fs.writeFileSync(filePath, JSON.stringify(subscriptions, null, 2), 'utf8');
+      } catch (e) {
+        console.warn('Write to subscriptions.json skipped (expected on Vercel)');
+      }
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Push subscription error:', error);
-    return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed' }, { status: 500 });
   }
 }
