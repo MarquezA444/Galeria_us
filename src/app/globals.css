@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #110e10; /* Gris carbón súper oscuro */
+  --foreground: #fcf9f9;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  /* Un fondo oscuro degradado profundo hacia rosa cuarzo */
+  background-image: 
+    radial-gradient(
+      circle at top left,
+      rgba(55, 30, 42, 0.4) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(45, 25, 35, 0.5) 0%,
+      transparent 55%
+    );
+  background-attachment: fixed;
+  font-family: var(--font-inter), sans-serif;
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-[16px] border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+  }
+}

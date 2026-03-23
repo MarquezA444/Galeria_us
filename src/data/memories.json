@@ -1,0 +1,99 @@
+{
+  "gallery": [
+    {
+      "id": "1",
+      "url": "https://picsum.photos/id/10/800/1000",
+      "title": "Aquel primer atardecer juntos",
+      "timestamp": "2023-10-15T00:00:00Z",
+      "dateString": "Octubre 2023",
+      "aspectRatio": "portrait",
+      "isGif": false
+    },
+    {
+      "id": "2",
+      "url": "https://picsum.photos/id/17/800/800",
+      "title": "Recuerdos imborrables",
+      "timestamp": "2023-12-05T00:00:00Z",
+      "dateString": "Diciembre 2023",
+      "aspectRatio": "square",
+      "isGif": false
+    },
+    {
+      "id": "3",
+      "url": "https://picsum.photos/id/29/800/450",
+      "title": "Tus sonrisas",
+      "timestamp": "2024-02-20T00:00:00Z",
+      "dateString": "Febrero 2024",
+      "aspectRatio": "video",
+      "isGif": true
+    },
+    {
+      "id": "4",
+      "url": "https://picsum.photos/id/42/800/600",
+      "title": "Detalles que enamoran",
+      "timestamp": "2024-04-10T00:00:00Z",
+      "dateString": "Abril 2024",
+      "aspectRatio": "landscape",
+      "isGif": false
+    },
+    {
+      "id": "5",
+      "url": "https://picsum.photos/id/65/800/1000",
+      "title": "Momentos únicos",
+      "timestamp": "2024-07-01T00:00:00Z",
+      "dateString": "Julio 2024",
+      "aspectRatio": "portrait",
+      "isGif": false
+    }
+  ],
+  "timeline": [
+    {
+      "id": "memoria-navidad",
+      "date": "25 de Diciembre, 2023",
+      "timestamp": "2023-12-25T00:00:00Z",
+      "title": "El Primer Encuentro Mágico",
+      "message": "El día en que descubrimos que nuestras manos encajaban perfectamente, y el mundo entero pareció detenerse por un instante.",
+      "fullSecretMessage": "Esa noche, bajo las estrellas, supe que no habría vuelta atrás. La forma en que sonreías mientras me hablabas de tus sueños se quedó grabada para siempre en la memoria de mi corazón.\n\nFue como si el universo entero conspirara para que estuviéramos exactamente en este lugar, entrelazando destinos y creando una historia reservada solo para nosotros.",
+      "gifUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+    },
+    {
+      "id": "memoria-febrero",
+      "date": "14 de Febrero, 2024",
+      "timestamp": "2024-02-14T00:00:00Z",
+      "title": "Nuestra Promesa",
+      "message": "Cafés fríos, risas interminables y miradas que lo decían todo sin pronunciar ni una sola palabra.",
+      "fullSecretMessage": "Recuerdo cómo la lluvia golpeaba el cristal del café. Llevábamos horas hablando fascinados de la vida, dejándonos llevar por la corriente de nuestros pensamientos compartidos.\n\nNo hizo falta decir 'te quiero' en voz alta en ese momento; el sentimiento vibraba en el destello dorado del ambiente y en el leve roce de nuestras rodillas.",
+      "gifUrl": "https://picsum.photos/id/350/800/500"
+    },
+    {
+      "id": "capsule-1",
+      "date": "1 de Noviembre, 2026",
+      "timestamp": "2026-11-01T00:00:00Z",
+      "title": "Nuestro Aniversario",
+      "message": "Nuestra promesa sigue viva y creciendo, abre esto para ver nuestro futuro.",
+      "fullSecretMessage": "Guardé este recuerdo hace meses para que hoy, en nuestra fecha especial, recordemos que la magia siempre fue real. Te amo infinitamente.",
+      "gifUrl": "",
+      "unlockDate": "2026-11-01T00:00:00Z"
+    },
+    {
+      "id": "memoria-semilla-1774223638436",
+      "date": "22 de marzo de 2026",
+      "timestamp": "2026-03-22T23:53:58.548Z",
+      "title": "Un nuevo brote",
+      "message": "Un pensamiento mágico que acaba de florecer.",
+      "fullSecretMessage": "Te amo",
+      "gifUrl": "",
+      "unlockDate": "2026-03-23T00:00:00.000Z"
+    },
+    {
+      "id": "memoria-semilla-1774233572920",
+      "date": "22 de marzo de 2026",
+      "timestamp": "2026-03-23T02:39:33.033Z",
+      "title": "Un nuevo brote",
+      "message": "Un pensamiento mágico que acaba de florecer.",
+      "fullSecretMessage": "hola",
+      "gifUrl": "",
+      "unlockDate": "2026-03-22T00:00:00.000Z"
+    }
+  ]
+}
