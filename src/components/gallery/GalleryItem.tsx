@@ -58,7 +58,7 @@ export default function GalleryItem({ image, index, onClick }: GalleryItemProps)
         )}
         
         <Image
-          src={image.url.replace(/"/g, '')}
+          src={image.url?.replace(/"/g, '') || ''}
           alt={image.title}
           fill
           priority={image.isGif || index < 4} // Soluciona warning de LCP
